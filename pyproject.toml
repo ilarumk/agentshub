@@ -1,6 +1,6 @@
 [project]
 name = "agentshub-ai"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A collection of reusable AI agents for trend research, news analysis, and content intelligence. Each agent runs standalone (MCP server) or together through an orchestrator."
 readme = "README.md"
 license = "MIT"
@@ -42,8 +42,11 @@ Homepage = "https://github.com/ilarumk/agentshub"
 Issues = "https://github.com/ilarumk/agentshub/issues"
 
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=68", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_file = "agentshub/_version.py"
 
 [tool.setuptools.packages.find]
 where = ["."]
