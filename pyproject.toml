@@ -1,0 +1,50 @@
+[project]
+name = "agentshub"
+version = "0.1.0"
+description = "A collection of reusable AI agents for trend research, news analysis, and content intelligence. Each agent runs standalone (MCP server) or together through an orchestrator."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+keywords = ["agents", "multi-agent", "mcp", "orchestration", "bigquery", "trends"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+# Core dependencies — needed for all agents
+dependencies = [
+    "google-cloud-bigquery>=3.0.0",
+    "google-auth>=2.0.0",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "mcp>=0.9.0",
+    "feedparser>=6.0.0",
+]
+
+# Optional dependencies for specific agents
+[project.optional-dependencies]
+instagram = ["httpx>=0.27.0"]          # instagram_trends (Apify)
+seo = ["google-api-python-client>=2.0.0"]  # search_console (GSC API)
+all = [
+    "httpx>=0.27.0",
+    "google-api-python-client>=2.0.0",
+]
+
+[project.scripts]
+agentshub-mcp = "agentshub.mcp_server:main"
+
+[project.urls]
+Homepage = "https://github.com/ilarumk/agentshub"
+Issues = "https://github.com/ilarumk/agentshub/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agentshub*"]
