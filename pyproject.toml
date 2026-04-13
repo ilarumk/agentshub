@@ -1,9 +1,9 @@
 [project]
-name = "agentshub"
+name = "agentshub-ai"
 version = "0.1.0"
 description = "A collection of reusable AI agents for trend research, news analysis, and content intelligence. Each agent runs standalone (MCP server) or together through an orchestrator."
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">=3.11"
 keywords = ["agents", "multi-agent", "mcp", "orchestration", "bigquery", "trends"]
 classifiers = [

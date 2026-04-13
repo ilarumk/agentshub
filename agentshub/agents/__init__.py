@@ -101,6 +101,53 @@ REGISTRY: list[AgentMeta] = [
             "days":        {"type": "integer", "description": "Lookback window in days (default 30)"},
         },
     },
+    {
+        "name":        "bbc_news",
+        "module":      "agentshub.agents.bbc_news",
+        "description": "Search BBC News articles by topic via BigQuery public dataset. "
+                       "Returns article titles, descriptions, body previews, and category breakdown.",
+        "params": {
+            "topic":  {"type": "string", "description": "Topic or keywords to search (e.g. 'artificial intelligence')"},
+            "limit":  {"type": "integer", "description": "Max articles to return (default 10)"},
+        },
+    },
+    {
+        "name":        "patent_search",
+        "module":      "agentshub.agents.patent_search",
+        "description": "Search 90M+ patent publications by keyword. Returns filings, top assignees, "
+                       "filing velocity over time, and country breakdown. The supervisor can call this "
+                       "multiple times with different keywords to expand the search.",
+        "params": {
+            "keywords":    {"type": "string", "description": "Search terms (e.g. 'quantum computing', 'AI chips')"},
+            "years_back":  {"type": "integer", "description": "Years of filing history to include (default 5)"},
+            "limit":       {"type": "integer", "description": "Max patents to return (default 15)"},
+        },
+    },
+    {
+        "name":        "bigquery_analyst",
+        "module":      "agentshub.agents.bigquery_analyst",
+        "description": "Execute SQL against any BigQuery public dataset, or inspect table schemas. "
+                       "Use action='schema' with a dataset name to see tables and columns. "
+                       "Use action='query' with SQL to run a query. Only SELECT queries allowed.",
+        "params": {
+            "query":   {"type": "string", "description": "SQL query to execute (SELECT only)"},
+            "dataset": {"type": "string", "description": "Dataset to inspect (e.g. 'bigquery-public-data.google_trends')"},
+            "action":  {"type": "string", "description": "'query' to run SQL, 'schema' to list tables/columns"},
+            "limit":   {"type": "integer", "description": "Max rows to return (default 20)"},
+        },
+    },
+    {
+        "name":        "site_security",
+        "module":      "agentshub.agents.site_security",
+        "description": "Scan a website for common security misconfigurations. Checks SSL, "
+                       "security headers, WordPress vulnerabilities, exposed sensitive files, "
+                       "server info leakage. Public HTTP requests only — no authentication or "
+                       "intrusive testing. Returns a security grade (A-F).",
+        "params": {
+            "url":    {"type": "string", "description": "Website URL to scan (e.g. https://example.com)"},
+            "checks": {"type": "string", "description": "Comma-separated: ssl, headers, wordpress, files, server, all (default: all)"},
+        },
+    },
 ]
 
 
